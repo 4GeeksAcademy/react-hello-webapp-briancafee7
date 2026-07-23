@@ -19,13 +19,19 @@ export default function storeReducer(store, action = {}) {
     default:
       throw Error('Unknown action.');
 
-    case "agregar_contacto":
+    case "add_contact":
       return {
         ...store,
         contactos: [...store.contactos, action.payload]
       };
 
-    default:
-      return state;
+      case "cargar_contactos":
+      // Reemplaza toda la lista (se usa tras el GET)
+      return {
+        ...store,
+        contactos: action.payload
+      };
+
+    
   }
 }
